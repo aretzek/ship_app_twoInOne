@@ -16,7 +16,7 @@ import java.util.Date;
 public class Scheduler {
     private ShipManager shipManager;
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-//    private SelfPinger selfPinger;
+    private SelfPinger selfPinger;
 
 
 
@@ -24,18 +24,18 @@ public class Scheduler {
     public Scheduler(ShipManager shipManager, SelfPinger selfPinger) {
         this.shipManager = shipManager;
 
-//        this.selfPinger = selfPinger;
+        this.selfPinger = selfPinger;
     }
-//    @Scheduled(fixedRate = 600000L)
-//    public void test2(){
-//        try {
-//            selfPinger.ping();
-//            Document doc = Jsoup.connect("https://unipilot.herokuapp.com/").get();
-//            System.out.println("DO NOT SLEEEP HEROKU!" + doc.title());
-//        } catch (Exception e) {
-//            System.out.println("something went wrong with ping myself... ");
-//        }
-//    }
+    @Scheduled(fixedRate = 600000L)
+    public void test2(){
+        try {
+            selfPinger.ping();
+            Document doc = Jsoup.connect("https://serene-depths-36885.herokuapp.com/").get();
+            System.out.println("DO NOT SLEEEP HEROKU!" + doc.title());
+        } catch (Exception e) {
+            System.out.println("something went wrong with ping myself... ");
+        }
+    }
 
 
     //@Scheduled(cron = "0 * * ? * *")

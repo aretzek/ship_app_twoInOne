@@ -18,7 +18,7 @@ public class SelfPinger {
     {
         try {
 
-            connection = new URL("https://unipilot.herokuapp.com/").openConnection();
+            connection = new URL("https://serene-depths-36885.herokuapp.com/").openConnection();
 
             connection.connect();
         } catch (IOException e) {
