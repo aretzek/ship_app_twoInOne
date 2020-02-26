@@ -1,0 +1,35 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+group = 'com.ship'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
+    compile group: 'com.github.fabiomaffioletti', name: 'spring-boot-starter-data-firebase', version: '1.0.0.RELEASE'
+    compile group: 'com.google.firebase', name: 'firebase-admin', version: '6.12.0'
+    compile group: 'org.json', name: 'json', version: '20190722'
+
+
+
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.2.3.RELEASE'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
