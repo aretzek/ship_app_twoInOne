@@ -20,8 +20,8 @@ public class UnipilDecoder implements DecoderInterface {
 
         List<Ship> shipList = new ArrayList<Ship>();
         String[] tempTable;
-        Document doc = Jsoup.connect("http://www.gdanskpilot.pl/0/index.php?content=traffic").get();
-      //  Document doc = Jsoup.connect("http://localhost:8080/").get();//
+       Document doc = Jsoup.connect("http://www.gdanskpilot.pl/0/index.php?content=traffic").get();
+       //Document doc = Jsoup.connect("http://localhost:8080/").get();//
 
 
         Element table = doc.select("table").get(0); //select the first table.
@@ -33,14 +33,19 @@ public class UnipilDecoder implements DecoderInterface {
         Ship ship = null;
         for (int i = 1; i < tempTable.length; i = i + 7) {
             ship=new Ship();
+
             ship.setDate(tempTable[i]);
             ship.setTime(" "+tempTable[i + 2]);
             ship.setInfo(tempTable[i + 1]);
             ship.setName(tempTable[i + 3]);
+            ship.setName(ship.getName().replace('/', ' '));
+            ship.setName(ship.getName().replace('.', ' '));
+            ship.setName(ship.getName().replace('-', ' '));
             ship.setDeparturePlace(tempTable[i + 5]);
             ship.setArrivalPlace(tempTable[i + 6]);
             ship.setId(ship.getName()+ship.getArrivalPlace());
            // System.out.println(ship.getName());
+
             shipList.add(ship);
         }
         return shipList;
