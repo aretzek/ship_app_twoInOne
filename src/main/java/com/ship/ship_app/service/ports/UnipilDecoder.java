@@ -15,6 +15,7 @@ import java.util.List;
 public class UnipilDecoder implements DecoderInterface {
 
 
+
     @Override
     public List<Ship> getShipList() throws IOException {
 
@@ -38,11 +39,10 @@ public class UnipilDecoder implements DecoderInterface {
             ship.setTime(" "+tempTable[i + 2]);
             ship.setInfo(tempTable[i + 1]);
             ship.setName(tempTable[i + 3]);
-            ship.setName(ship.getName().replace('/', ' '));
-            ship.setName(ship.getName().replace('.', ' '));
-            ship.setName(ship.getName().replace('-', ' '));
+            ship.changingSingnsInShipsNames(ship);
             ship.setDeparturePlace(tempTable[i + 5]);
             ship.setArrivalPlace(tempTable[i + 6]);
+            ship.changingSingnsInArrivalPlace(ship);
             ship.setId(ship.getName()+ship.getArrivalPlace());
            // System.out.println(ship.getName());
 

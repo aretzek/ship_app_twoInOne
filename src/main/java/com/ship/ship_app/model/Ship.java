@@ -119,7 +119,17 @@ public class Ship {
 
 
     }
+    public void changingSingnsInShipsNames (Ship ship) {
+        ship.setName(ship.getName().replace('/', ' '));
+        ship.setName(ship.getName().replace('.', ' '));
+        ship.setName(ship.getName().replace('-', ' '));
+    }
 
 
+    public void changingSingnsInArrivalPlace (Ship ship) {
+        ship.setArrivalPlace(ship.getArrivalPlace().replace('/', ' '));
+        ship.setArrivalPlace(ship.getArrivalPlace().replace('.', ' '));
+        ship.setArrivalPlace(ship.getArrivalPlace().replace('-', ' '));
+    }
 
 }

@@ -41,7 +41,7 @@ public class ShipManager implements InitializingBean {
         try {
             tokensMap.putAll(shipRepository.get(id).getTokens());
         } catch (FirebaseRepositoryException | HttpClientErrorException e) {
-            System.out.println("jebany makaroniarz nie znalazł statku o takim ID ... ");
+            System.out.println(" nie znalazł statku o takim ID ... ");
         }
         return tokensMap;
     }
