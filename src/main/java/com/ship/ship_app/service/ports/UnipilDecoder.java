@@ -32,7 +32,7 @@ public class UnipilDecoder implements DecoderInterface {
                 .replace("</td>", "").replace("<tr>", "").replace("</tr>", "").replace("\n", "");
         tempTable = stream.split(";");
         Ship ship = null;
-        for (int i = 1; i < tempTable.length; i = i + 7) {
+        for (int i = 1; i < tempTable.length -1; i = i + 7) {
             ship=new Ship();
 
             ship.setDate(tempTable[i]);
