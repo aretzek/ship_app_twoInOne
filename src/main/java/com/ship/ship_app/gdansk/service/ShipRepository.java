@@ -10,9 +10,6 @@ import java.util.Map;
 
 @Repository
 public class ShipRepository extends DefaultFirebaseRealtimeDatabaseRepository<Ship, String> {
-
-
-
 }
 
 

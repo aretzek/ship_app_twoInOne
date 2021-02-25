@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UnipilDecoder implements DecoderInterface {
+public class UnipilDecoder  {
 
 
 
-    @Override
+
     public List<Ship> getShipList() throws IOException {
 
         List<Ship> shipList = new ArrayList<Ship>();
         String[] tempTable;
-       Document doc = Jsoup.connect("http://www.gdanskpilot.pl/0/index.php?content=traffic").get();
+       Document doc = Jsoup.connect("http://www.gdanskpilot.pl/index.php?content=traffic").get();
        //Document doc = Jsoup.connect("http://localhost:8080/").get();//
 
 

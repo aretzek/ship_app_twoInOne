@@ -1,4 +1,4 @@
-package com.ship.ship_app.model;
+package com.ship.ship_app.gdansk.model;
 
 import com.github.fabiomaffioletti.firebase.document.FirebaseDocument;
 import com.github.fabiomaffioletti.firebase.document.FirebaseId;
@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@FirebaseDocument("/Gdansk")
-public class Ship {
+@FirebaseDocument("/GdanskTest")
+public class ShipGdynia {
     @FirebaseId
     private String id;
     private String name;
@@ -20,14 +20,13 @@ public class Ship {
     private String arrivalPlace;
     private Map<String, String> tokens =new HashMap<>();
 
-    public Ship() {
+    public ShipGdynia() {
 
     }
 
 
-    public Ship(String id, String name, String date, String time, String info, String departurePlace, String arrivalPlace) {
+    public ShipGdynia(String id, String name, String date, String time, String info, String departurePlace, String arrivalPlace) {
         this.id = id;
-
         this.name = name;
         this.date = date;
         this.time = time;
@@ -109,9 +108,9 @@ public class Ship {
         if (this == object) {
             return true;
         }
-        if (object instanceof Ship) {
-            Ship shipDetails = (Ship) object;
-            if (name.equals(shipDetails.name) && info.equals(shipDetails.info) && time.equals(shipDetails.time) && date.equals(shipDetails.date)&& arrivalPlace.equals(shipDetails.arrivalPlace)) {
+        if (object instanceof ShipGdynia) {
+            ShipGdynia shipGdanskDetails = (ShipGdynia) object;
+            if (name.equals(shipGdanskDetails.name) && info.equals(shipGdanskDetails.info) && time.equals(shipGdanskDetails.time) && date.equals(shipGdanskDetails.date)&& arrivalPlace.equals(shipGdanskDetails.arrivalPlace)) {
                 return true;
             }
         }
@@ -119,17 +118,19 @@ public class Ship {
 
 
     }
-    public void changingSingnsInShipsNames (Ship ship) {
-        ship.setName(ship.getName().replace('/', ' '));
-        ship.setName(ship.getName().replace('.', ' '));
-        ship.setName(ship.getName().replace('-', ' '));
+    public void changingSingnsInShipsNames (ShipGdynia shipGdansk) {
+        shipGdansk.setName(shipGdansk.getName().replace('/', ' '));
+        shipGdansk.setName(shipGdansk.getName().replace('.', ' '));
+        shipGdansk.setName(shipGdansk.getName().replace('-', ' '));
     }
 
 
-    public void changingSingnsInArrivalPlace (Ship ship) {
-        ship.setArrivalPlace(ship.getArrivalPlace().replace('/', ' '));
-        ship.setArrivalPlace(ship.getArrivalPlace().replace('.', ' '));
-        ship.setArrivalPlace(ship.getArrivalPlace().replace('-', ' '));
+    public void changingSingnsInArrivalPlace (ShipGdynia shipGdansk) {
+        shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('/', ' '));
+        shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('.', ' '));
+        shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('-', ' '));
     }
+
+
 
 }

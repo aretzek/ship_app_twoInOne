@@ -85,9 +85,7 @@ public class ShipManager implements InitializingBean {
         for (Ship ship : actualShipList) {
 
             if (!lastUpdatedShipList.contains(ship)) {  //
-
                 ship.setTokens(getTokensFromFirebase(ship.getId()));
-
                 changesInShips.listOfNewShips.add(ship);
             }
         }
