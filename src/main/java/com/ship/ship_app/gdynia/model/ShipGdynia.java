@@ -123,6 +123,7 @@ public class ShipGdynia {
         shipGdynia.setName(shipGdynia.getName().replace('Ł', 'L'));
         shipGdynia.setName(shipGdynia.getName().replace('Ó', 'O'));
         shipGdynia.setName(shipGdynia.getName().replace('Ń', 'N'));
+        shipGdynia.setName(shipGdynia.getName().replace('Ę', 'E'));
     }
     public void changingSingnsInArrivalPlace (ShipGdynia shipGdynia) {
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('/', ' '));
@@ -133,5 +134,6 @@ public class ShipGdynia {
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('Ł', 'L'));
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('Ó', 'O'));
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('Ń', 'N'));
+        shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('Ę', 'E'));
     }
 }

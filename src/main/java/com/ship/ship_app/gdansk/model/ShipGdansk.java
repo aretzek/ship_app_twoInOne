@@ -127,6 +127,7 @@ public class ShipGdansk {
         shipGdansk.setName(shipGdansk.getName().replace('Ł', 'L'));
         shipGdansk.setName(shipGdansk.getName().replace('Ó', 'O'));
         shipGdansk.setName(shipGdansk.getName().replace('Ń', 'N'));
+        shipGdansk.setName(shipGdansk.getName().replace('Ę', 'E'));
     }
 
 
@@ -139,6 +140,7 @@ public class ShipGdansk {
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('Ł', 'L'));
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('Ó', 'O'));
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('Ń', 'N'));
+        shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('Ę', 'E'));
     }
 
 
