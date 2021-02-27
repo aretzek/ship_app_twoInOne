@@ -31,7 +31,7 @@ public class Scheduler {
     public void test2(){
         try {
             selfPinger.ping();
-            Document doc = Jsoup.connect("https://serene-depths-36885.herokuapp.com/").get();
+            Document doc = Jsoup.connect("https://unipilot.herokuapp.com/").get();
             System.out.println("DO NOT SLEEEP HEROKU!" + doc.title());
         } catch (Exception e) {
             System.out.println("something went wrong with ping myself... ");
