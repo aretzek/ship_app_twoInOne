@@ -1,4 +1,4 @@
-package com.ship.ship_app.service;
+package com.ship.ship_app.controller;
 
 
 

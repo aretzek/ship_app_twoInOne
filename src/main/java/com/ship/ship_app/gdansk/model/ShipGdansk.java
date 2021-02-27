@@ -8,7 +8,7 @@ import java.util.Map;
 
 
 @FirebaseDocument("/GdanskTest")
-public class ShipGdynia {
+public class ShipGdansk {
     @FirebaseId
     private String id;
     private String name;
@@ -20,12 +20,12 @@ public class ShipGdynia {
     private String arrivalPlace;
     private Map<String, String> tokens =new HashMap<>();
 
-    public ShipGdynia() {
+    public ShipGdansk() {
 
     }
 
 
-    public ShipGdynia(String id, String name, String date, String time, String info, String departurePlace, String arrivalPlace) {
+    public ShipGdansk(String id, String name, String date, String time, String info, String departurePlace, String arrivalPlace) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -108,8 +108,8 @@ public class ShipGdynia {
         if (this == object) {
             return true;
         }
-        if (object instanceof ShipGdynia) {
-            ShipGdynia shipGdanskDetails = (ShipGdynia) object;
+        if (object instanceof ShipGdansk) {
+            ShipGdansk shipGdanskDetails = (ShipGdansk) object;
             if (name.equals(shipGdanskDetails.name) && info.equals(shipGdanskDetails.info) && time.equals(shipGdanskDetails.time) && date.equals(shipGdanskDetails.date)&& arrivalPlace.equals(shipGdanskDetails.arrivalPlace)) {
                 return true;
             }
@@ -118,17 +118,27 @@ public class ShipGdynia {
 
 
     }
-    public void changingSingnsInShipsNames (ShipGdynia shipGdansk) {
+    public void changingSingnsInShipsNames (ShipGdansk shipGdansk) {
         shipGdansk.setName(shipGdansk.getName().replace('/', ' '));
         shipGdansk.setName(shipGdansk.getName().replace('.', ' '));
         shipGdansk.setName(shipGdansk.getName().replace('-', ' '));
+        shipGdansk.setName(shipGdansk.getName().replace('+', ' '));
+        shipGdansk.setName(shipGdansk.getName().replace('Ś', 'S'));
+        shipGdansk.setName(shipGdansk.getName().replace('Ł', 'L'));
+        shipGdansk.setName(shipGdansk.getName().replace('Ó', 'O'));
+        shipGdansk.setName(shipGdansk.getName().replace('Ń', 'N'));
     }
 
 
-    public void changingSingnsInArrivalPlace (ShipGdynia shipGdansk) {
+    public void changingSingnsInArrivalPlace (ShipGdansk shipGdansk) {
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('/', ' '));
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('.', ' '));
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('-', ' '));
+        shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('+', ' '));
+        shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('Ś', 'S'));
+        shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('Ł', 'L'));
+        shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('Ó', 'O'));
+        shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('Ń', 'N'));
     }
 
 

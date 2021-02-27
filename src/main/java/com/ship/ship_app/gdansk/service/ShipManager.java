@@ -1,14 +1,13 @@
-package com.ship.ship_app.service;
+package com.ship.ship_app.gdansk.service;
 
 import com.github.fabiomaffioletti.firebase.exception.FirebaseRepositoryException;
-import com.ship.ship_app.model.Ship;
-import com.ship.ship_app.service.ports.UnipilDecoder;
+import com.ship.ship_app.gdansk.model.ShipGdansk;
+import com.ship.ship_app.controller.NotificationSender;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -18,7 +17,7 @@ public class ShipManager implements InitializingBean {
     private NotificationSender notificationSender;
 
 
-    private List<Ship> lastUpdatedShipList = new ArrayList<>();
+    private List<ShipGdansk> lastUpdatedShipGdanskList = new ArrayList<>();
 
 
     @Autowired
@@ -29,11 +28,11 @@ public class ShipManager implements InitializingBean {
     }
 
     public void setInitialList() {
-        lastUpdatedShipList = shipRepository.findAll();
+        lastUpdatedShipGdanskList = shipRepository.findAll();
     }
 
-    public List<Ship> getLastUpdatedShipList() {
-        return lastUpdatedShipList;
+    public List<ShipGdansk> getLastUpdatedShipGdanskList() {
+        return lastUpdatedShipGdanskList;
     }
 
     private Map<String, String> getTokensFromFirebase(String id) {
@@ -49,29 +48,29 @@ public class ShipManager implements InitializingBean {
 
     public void updateAllChanges() throws Exception {
 
-        List<Ship> newShips = new ArrayList<>(findDifferencesBetweenLastUpdatedListAndActualList().listOfNewShips);
-        List<Ship> outdatedShips = new ArrayList<>(findDifferencesBetweenLastUpdatedListAndActualList().listOfOutdatedShips);
-        for (Ship outdatedShip : outdatedShips) {
-            System.out.println("removed: " + outdatedShip.getName());
-            shipRepository.remove(outdatedShip.getId());
+        List<ShipGdansk> newShipGdansks = new ArrayList<>(findDifferencesBetweenLastUpdatedListAndActualList().listOfNewShipGdansks);
+        List<ShipGdansk> outdatedShipGdansks = new ArrayList<>(findDifferencesBetweenLastUpdatedListAndActualList().listOfOutdatedShipGdansks);
+        for (ShipGdansk outdatedShipGdansk : outdatedShipGdansks) {
+            System.out.println("removed: " + outdatedShipGdansk.getName());
+            shipRepository.remove(outdatedShipGdansk.getId());
         }
-        lastUpdatedShipList.removeAll(outdatedShips);
+        lastUpdatedShipGdanskList.removeAll(outdatedShipGdansks);
 
-        for (Ship newShip : newShips) {
-            shipRepository.update(newShip);
-            Map<String, String> tempTokens = getTokensFromFirebase(newShip.getId());
+        for (ShipGdansk newShipGdansk : newShipGdansks) {
+            shipRepository.update(newShipGdansk);
+            Map<String, String> tempTokens = getTokensFromFirebase(newShipGdansk.getId());
             if (!tempTokens.isEmpty()) {
 
                 for (String tempToken : tempTokens.values()) {
 
-                    notificationSender.pushFCMNotification(tempToken, newShip.getId(), newShip.getDate(), newShip.getInfo(), newShip.getTime());
+                    notificationSender.pushFCMNotification(tempToken, newShipGdansk.getId(), newShipGdansk.getDate(), newShipGdansk.getInfo(), newShipGdansk.getTime());
 
                     System.out.println(tempToken);
                 }
             }
 
         }
-        lastUpdatedShipList.addAll(newShips);
+        lastUpdatedShipGdanskList.addAll(newShipGdansks);
     }
 
     @Override
@@ -79,35 +78,35 @@ public class ShipManager implements InitializingBean {
     }
 
     private ChangesInShips findDifferencesBetweenLastUpdatedListAndActualList() throws Exception {
-        List<Ship> actualShipList = unipilDecoder.getShipList();
+        List<ShipGdansk> actualShipGdanskList = unipilDecoder.getShipList();
         ChangesInShips changesInShips = new ChangesInShips();
 
-        for (Ship ship : actualShipList) {
+        for (ShipGdansk shipGdansk : actualShipGdanskList) {
 
-            if (!lastUpdatedShipList.contains(ship)) {  //
-                ship.setTokens(getTokensFromFirebase(ship.getId()));
-                changesInShips.listOfNewShips.add(ship);
+            if (!lastUpdatedShipGdanskList.contains(shipGdansk)) {  //
+                shipGdansk.setTokens(getTokensFromFirebase(shipGdansk.getId()));
+                changesInShips.listOfNewShipGdansks.add(shipGdansk);
             }
         }
-        for (Ship ship : lastUpdatedShipList) {
-            if (actualShipList.contains(ship)) {
-                changesInShips.listOfUnchangedShips.add(ship);
+        for (ShipGdansk shipGdansk : lastUpdatedShipGdanskList) {
+            if (actualShipGdanskList.contains(shipGdansk)) {
+                changesInShips.listOfUnchangedShipGdansks.add(shipGdansk);
             } else {
-                changesInShips.listOfOutdatedShips.add(ship);
+                changesInShips.listOfOutdatedShipGdansks.add(shipGdansk);
             }
         }
 
-        for (Ship ship : lastUpdatedShipList) {
-            if (!actualShipList.contains(ship)) {
-                changesInShips.listOfOutdatedShips.add(ship);
+        for (ShipGdansk shipGdansk : lastUpdatedShipGdanskList) {
+            if (!actualShipGdanskList.contains(shipGdansk)) {
+                changesInShips.listOfOutdatedShipGdansks.add(shipGdansk);
             }
         }
         return changesInShips;
     }
 
     static private class ChangesInShips {
-        Set<Ship> listOfNewShips = new HashSet<>();
-        Set<Ship> listOfOutdatedShips = new HashSet<>();
-        Set<Ship> listOfUnchangedShips = new HashSet<>();
+        Set<ShipGdansk> listOfNewShipGdansks = new HashSet<>();
+        Set<ShipGdansk> listOfOutdatedShipGdansks = new HashSet<>();
+        Set<ShipGdansk> listOfUnchangedShipGdansks = new HashSet<>();
     }
 }

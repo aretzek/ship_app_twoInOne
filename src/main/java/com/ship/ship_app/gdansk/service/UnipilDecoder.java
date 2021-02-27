@@ -1,6 +1,6 @@
-package com.ship.ship_app.service.ports;
+package com.ship.ship_app.gdansk.service;
 
-import com.ship.ship_app.model.Ship;
+import com.ship.ship_app.gdansk.model.ShipGdansk;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,9 +17,9 @@ public class UnipilDecoder  {
 
 
 
-    public List<Ship> getShipList() throws IOException {
+    public List<ShipGdansk> getShipList() throws IOException {
 
-        List<Ship> shipList = new ArrayList<Ship>();
+        List<ShipGdansk> shipGdanskList = new ArrayList<ShipGdansk>();
         String[] tempTable;
        Document doc = Jsoup.connect("http://www.gdanskpilot.pl/index.php?content=traffic").get();
        //Document doc = Jsoup.connect("http://localhost:8080/").get();//
@@ -31,24 +31,24 @@ public class UnipilDecoder  {
         String stream = rows.toString().replace(" <td class=\"data\">", ";").replace("<td>", ";")
                 .replace("</td>", "").replace("<tr>", "").replace("</tr>", "").replace("\n", "");
         tempTable = stream.split(";");
-        Ship ship = null;
+        ShipGdansk shipGdansk = null;
         for (int i = 1; i < tempTable.length -1; i = i + 7) {
-            ship=new Ship();
+            shipGdansk =new ShipGdansk();
 
-            ship.setDate(tempTable[i]);
-            ship.setTime(" "+tempTable[i + 2]);
-            ship.setInfo(tempTable[i + 1]);
-            ship.setName(tempTable[i + 3]);
-            ship.changingSingnsInShipsNames(ship);
-            ship.setDeparturePlace(tempTable[i + 5]);
-            ship.setArrivalPlace(tempTable[i + 6]);
-            ship.changingSingnsInArrivalPlace(ship);
-            ship.setId(ship.getName()+ship.getArrivalPlace());
+            shipGdansk.setDate(tempTable[i]);
+            shipGdansk.setTime(" "+tempTable[i + 2]);
+            shipGdansk.setInfo(tempTable[i + 1]);
+            shipGdansk.setName(tempTable[i + 3]);
+            shipGdansk.changingSingnsInShipsNames(shipGdansk);
+            shipGdansk.setDeparturePlace(tempTable[i + 5]);
+            shipGdansk.setArrivalPlace(tempTable[i + 6]);
+            shipGdansk.changingSingnsInArrivalPlace(shipGdansk);
+            shipGdansk.setId(shipGdansk.getName()+ shipGdansk.getArrivalPlace());
            // System.out.println(ship.getName());
 
-            shipList.add(ship);
+            shipGdanskList.add(shipGdansk);
         }
-        return shipList;
+        return shipGdanskList;
     }
 }
 

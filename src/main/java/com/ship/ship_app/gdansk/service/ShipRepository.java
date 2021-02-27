@@ -1,15 +1,12 @@
-package com.ship.ship_app.service;
+package com.ship.ship_app.gdansk.service;
 
 import com.github.fabiomaffioletti.firebase.repository.DefaultFirebaseRealtimeDatabaseRepository;
-import com.ship.ship_app.model.Ship;
+import com.ship.ship_app.gdansk.model.ShipGdansk;
 import org.springframework.stereotype.Repository;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Repository
-public class ShipRepository extends DefaultFirebaseRealtimeDatabaseRepository<Ship, String> {
+public class ShipRepository extends DefaultFirebaseRealtimeDatabaseRepository<ShipGdansk, String> {
 }
 
 

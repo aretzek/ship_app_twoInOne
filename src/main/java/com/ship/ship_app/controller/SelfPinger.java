@@ -1,4 +1,4 @@
-package com.ship.ship_app.service.ports;
+package com.ship.ship_app.controller;
 
 import org.springframework.stereotype.Service;
 
