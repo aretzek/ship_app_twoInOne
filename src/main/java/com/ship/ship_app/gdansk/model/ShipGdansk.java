@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@FirebaseDocument("/GdanskTest")
+@FirebaseDocument("/Gdansk")
 public class ShipGdansk {
     @FirebaseId
     private String id;
