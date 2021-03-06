@@ -57,7 +57,7 @@ public class ShipManagerGdynia implements InitializingBean {
 
                 for (String tempToken : tempTokens.values()) {
 
-                    notificationSender.pushFCMNotification(tempToken, newShipGdynia.getId(), newShipGdynia.getDate(), newShipGdynia.getInfo(), newShipGdynia.getTime());
+                    notificationSender.pushFCMNotification(tempToken, newShipGdynia.getName(), newShipGdynia.getDate(), newShipGdynia.getInfo(), newShipGdynia.getTime());
 
                     System.out.println(tempToken);
                 }

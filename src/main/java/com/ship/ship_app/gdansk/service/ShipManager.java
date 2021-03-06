@@ -63,7 +63,7 @@ public class ShipManager implements InitializingBean {
 
                 for (String tempToken : tempTokens.values()) {
 
-                    notificationSender.pushFCMNotification(tempToken, newShipGdansk.getId(), newShipGdansk.getDate(), newShipGdansk.getInfo(), newShipGdansk.getTime());
+                    notificationSender.pushFCMNotification(tempToken, newShipGdansk.getName(), newShipGdansk.getDate(), newShipGdansk.getInfo(), newShipGdansk.getTime());
 
                     System.out.println(tempToken);
                 }
