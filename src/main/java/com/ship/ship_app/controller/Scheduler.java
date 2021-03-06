@@ -13,7 +13,7 @@ import java.util.Date;
 
 
 @Component
-public class Scheduler {
+public class  Scheduler {
     private ShipManager shipManager;
     private ShipManagerGdynia shipManagerGdynia;
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
