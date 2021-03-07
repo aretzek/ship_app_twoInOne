@@ -18,19 +18,22 @@ public class ShipsController {
     ShipRepository shipRepository;
     ShipRepositoryGdynia shipRepositoryGdynia;
 
-    public ShipsController(ShipRepository shipRepository) {
+    public ShipsController(ShipRepository shipRepository, ShipRepositoryGdynia shipRepositoryGdynia) {
         this.shipRepository = shipRepository;
+        this.shipRepositoryGdynia = shipRepositoryGdynia;
     }
 
     @GetMapping("/allShipsGdansk")
+    @ResponseBody
     public List<ShipGdansk> viewUnipilGdansk() {
         List<ShipGdansk> allGdansk = shipRepository.findAll();
         System.out.println("tu");
-        return allGdansk;
+         return allGdansk;
 
     }
 
     @GetMapping("/allShipsGdynia")
+    @ResponseBody
     public List<ShipGdynia> viewUnipilGdynia() {
         List<ShipGdynia> allGdynia = shipRepositoryGdynia.findAll();
         System.out.println("tu");
