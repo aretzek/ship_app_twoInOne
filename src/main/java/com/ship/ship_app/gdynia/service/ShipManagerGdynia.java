@@ -51,7 +51,7 @@ public class ShipManagerGdynia implements InitializingBean {
         lastUpdatedShipGdyniaList.removeAll(outdatedShipsGdynia);
 
         for (ShipGdynia newShipGdynia : newShipsGdynia) {
-            shipRepositoryGdynia.push(newShipGdynia);
+            shipRepositoryGdynia.update(newShipGdynia);
             Map<String, String> tempTokens = getTokensFromFirebase(newShipGdynia.getId());
             if (!tempTokens.isEmpty()) {
 
