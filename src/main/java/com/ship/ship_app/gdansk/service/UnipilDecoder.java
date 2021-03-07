@@ -44,8 +44,8 @@ public class UnipilDecoder  {
             //     shipGdansk.changingSingnsInShipsNames(shipGdansk);
             shipGdansk.setDeparturePlace(((Element) nodes.get(i+1)).child(5).getElementsByTag("td").text());
             shipGdansk.setArrivalPlace(((Element) nodes.get(i+1)).child(6).getElementsByTag("td").text());
-            shipGdansk.changingSingnsInArrivalPlace(shipGdansk);
-            shipGdansk.setId(shipGdansk.getName()+ shipGdansk.getArrivalPlace());
+          //  shipGdansk.changingSingnsInArrivalPlace(shipGdansk);
+          //  shipGdansk.setId(shipGdansk.getName()+ shipGdansk.getArrivalPlace());
             // System.out.println(ship.getName());
 
             shipGdanskList.add(shipGdansk);

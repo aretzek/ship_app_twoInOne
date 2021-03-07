@@ -57,7 +57,7 @@ public class ShipManager implements InitializingBean {
         lastUpdatedShipGdanskList.removeAll(outdatedShipGdansks);
 
         for (ShipGdansk newShipGdansk : newShipGdansks) {
-            shipRepository.update(newShipGdansk);
+            shipRepository.push(newShipGdansk);
             Map<String, String> tempTokens = getTokensFromFirebase(newShipGdansk.getId());
             if (!tempTokens.isEmpty()) {
 
