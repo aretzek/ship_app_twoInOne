@@ -10,6 +10,7 @@ import java.util.Map;
 @FirebaseDocument("/Gdynia")
 public class ShipGdynia {
     @FirebaseId
+    @JsonProperty
     private String id;
     private String name;
     private String date;
