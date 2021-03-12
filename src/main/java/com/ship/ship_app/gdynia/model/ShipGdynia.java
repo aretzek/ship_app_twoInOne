@@ -1,5 +1,6 @@
 package com.ship.ship_app.gdynia.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.fabiomaffioletti.firebase.document.FirebaseDocument;
 import com.github.fabiomaffioletti.firebase.document.FirebaseId;
 import com.ship.ship_app.gdansk.model.ShipGdansk;
