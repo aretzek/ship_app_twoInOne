@@ -31,17 +31,13 @@ public class ShipsController {
     @GetMapping("/allShipsGdansk")
     @ResponseBody
     public List<ShipGdansk> viewUnipilGdansk() {
-        List<ShipGdansk> allGdansk = shipRepository.findAll();
-        shipRepository.shipGdanskWithId();
-        System.out.println("tu");
-         return allGdansk;
+         return shipRepository.findAll();
 
     }
 
     @GetMapping("/allShipsGdynia")
     @ResponseBody
     public List<ShipGdynia> viewUnipilGdynia() {
-
         return  shipRepositoryGdynia.findAll();
     }
 
