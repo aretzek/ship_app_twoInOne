@@ -41,16 +41,16 @@ public class ShipsController {
     @GetMapping("/allShipsGdynia")
     @ResponseBody
     public List<ShipGdynia> viewUnipilGdynia() {
-        ;
-        List<ShipGdynia> all = shipRepositoryGdynia.findAll();
-        return  all.stream().sorted(Comparator.comparing(ShipGdynia::getArrivalPlace)).collect(Collectors.toList());
+
+        return  shipRepositoryGdynia.findAll();
     }
 
     @GetMapping("/allShipsGdyniaByArrivalPlace")
     @ResponseBody
     public List<ShipGdynia> shipsGdyniaSortedByBerth (){
         List<ShipGdynia> allGdynia = shipRepositoryGdynia.findAll();
-        return allGdynia.stream().sorted(Comparator.comparing(ShipGdynia::getArrivalPlace)).collect(Collectors.toList());
+        return allGdynia;
+        //allGdynia.stream().sorted(Comparator.comparing(ShipGdynia::getArrivalPlace)).collect(Collectors.toList());
     }
 
     @GetMapping("/allShipsGdanskByArrivalPlace")
