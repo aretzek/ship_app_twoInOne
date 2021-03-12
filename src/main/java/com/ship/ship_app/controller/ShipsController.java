@@ -30,9 +30,9 @@ public class ShipsController {
 
     @GetMapping("/allShipsGdansk")
     @ResponseBody
-    public List<ShipGdynia> viewUnipilGdansk() {
-        List<ShipGdynia> allGdansk = shipRepositoryGdynia.findAll();
-
+    public List<ShipGdansk> viewUnipilGdansk() {
+        List<ShipGdansk> allGdansk = shipRepository.findAll();
+        shipRepository.shipGdanskWithId();
         System.out.println("tu");
          return allGdansk;
 
@@ -42,25 +42,21 @@ public class ShipsController {
     @ResponseBody
     public List<ShipGdynia> viewUnipilGdynia() {
 
-        List<ShipGdynia> allGdynia = shipRepositoryGdynia.findAll();
-       return allGdynia.stream().sorted(Comparator.comparing(ShipGdynia::getArrivalPlace)).collect(Collectors.toList());
+        return  shipRepositoryGdynia.findAll();
     }
 
-    @GetMapping("/sorted")
+    @GetMapping("/allShipsGdyniaByArrivalPlace")
     @ResponseBody
     public List<ShipGdynia> shipsGdyniaSortedByBerth (){
         List<ShipGdynia> allGdynia = shipRepositoryGdynia.findAll();
-        return allGdynia;
-        //allGdynia.stream().sorted(Comparator.comparing(ShipGdynia::getArrivalPlace)).collect(Collectors.toList());
+        return allGdynia.stream().sorted(Comparator.comparing(ShipGdynia::getArrivalPlace)).collect(Collectors.toList());
     }
 
     @GetMapping("/allShipsGdanskByArrivalPlace")
     @ResponseBody
     public List<ShipGdansk> shipGdansksSortedByBerth (){
-        List<ShipGdansk> allGdansk = shipRepository.findAll();
+        return shipRepository.findAll().stream().sorted(Comparator.comparing(ShipGdansk::getArrivalPlace)).collect(Collectors.toList());
 
-        List<ShipGdansk> collect = allGdansk.stream().sorted(Comparator.comparing(ShipGdansk::getArrivalPlace)).collect(Collectors.toList());
-        return collect;
     }
 
 
