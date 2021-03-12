@@ -45,7 +45,7 @@ public class ShipsController {
         return  shipRepositoryGdynia.findAll();
     }
 
-    @GetMapping("/allShipsGdyniaByArrivalPlace")
+    @GetMapping("/sorted")
     @ResponseBody
     public List<ShipGdynia> shipsGdyniaSortedByBerth (){
         List<ShipGdynia> allGdynia = shipRepositoryGdynia.findAll();
