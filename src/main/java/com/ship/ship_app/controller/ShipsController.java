@@ -8,7 +8,12 @@ import com.ship.ship_app.gdynia.service.ShipRepositoryGdynia;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.Query;
+import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Filter;
+import java.util.logging.LogRecord;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -27,6 +32,7 @@ public class ShipsController {
     @ResponseBody
     public List<ShipGdansk> viewUnipilGdansk() {
         List<ShipGdansk> allGdansk = shipRepository.findAll();
+        shipRepository.shipGdanskWithId();
         System.out.println("tu");
          return allGdansk;
 
@@ -35,10 +41,23 @@ public class ShipsController {
     @GetMapping("/allShipsGdynia")
     @ResponseBody
     public List<ShipGdynia> viewUnipilGdynia() {
-        List<ShipGdynia> allGdynia = shipRepositoryGdynia.findAll();
-        System.out.println("tu");
-        return allGdynia;
+        ;
+       return shipRepositoryGdynia.findAll();
 
+    }
+
+    @GetMapping("/allShipsGdyniaByArrivalPlace")
+    @ResponseBody
+    public List<ShipGdynia> shipsGdyniaSortedByBerth (){
+        List<ShipGdynia> allGdynia = shipRepositoryGdynia.findAll();
+        return allGdynia.stream().sorted(Comparator.comparing(ShipGdynia::getArrivalPlace)).collect(Collectors.toList());
+    }
+
+    @GetMapping("/allShipsGdanskByArrivalPlace")
+    @ResponseBody
+    public List<ShipGdansk> shipGdansksSortedByBerth (){
+        List<ShipGdansk> allGdansk = shipRepository.findAll();
+        return allGdansk.stream().sorted(Comparator.comparing(ShipGdansk::getArrivalPlace)).collect(Collectors.toList());
     }
 
 
