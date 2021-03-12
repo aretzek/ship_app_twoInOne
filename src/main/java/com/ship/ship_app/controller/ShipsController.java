@@ -57,7 +57,9 @@ public class ShipsController {
     @ResponseBody
     public List<ShipGdansk> shipGdansksSortedByBerth (){
         List<ShipGdansk> allGdansk = shipRepository.findAll();
-        return allGdansk.stream().sorted(Comparator.comparing(ShipGdansk::getArrivalPlace)).collect(Collectors.toList());
+
+        List<ShipGdansk> collect = allGdansk.stream().sorted(Comparator.comparing(ShipGdansk::getArrivalPlace)).collect(Collectors.toList());
+        return collect;
     }
 
 
