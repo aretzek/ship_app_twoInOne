@@ -42,7 +42,8 @@ public class ShipsController {
     @ResponseBody
     public List<ShipGdynia> viewUnipilGdynia() {
 
-        return  shipRepositoryGdynia.findAll();
+        List<ShipGdynia> allGdynia = shipRepositoryGdynia.findAll();
+       return allGdynia.stream().sorted(Comparator.comparing(ShipGdynia::getArrivalPlace)).collect(Collectors.toList());
     }
 
     @GetMapping("/sorted")
