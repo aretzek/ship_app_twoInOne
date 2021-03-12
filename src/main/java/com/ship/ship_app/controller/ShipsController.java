@@ -30,9 +30,9 @@ public class ShipsController {
 
     @GetMapping("/allShipsGdansk")
     @ResponseBody
-    public List<ShipGdansk> viewUnipilGdansk() {
-        List<ShipGdansk> allGdansk = shipRepository.findAll();
-        shipRepository.shipGdanskWithId();
+    public List<ShipGdynia> viewUnipilGdansk() {
+        List<ShipGdynia> allGdansk = shipRepositoryGdynia.findAll();
+
         System.out.println("tu");
          return allGdansk;
 
