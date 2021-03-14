@@ -1,18 +1,13 @@
 package com.ship.ship_app.controller;
 
 
-import com.ship.ship_app.gdansk.model.ShipGdansk;
-import com.ship.ship_app.gdansk.service.ShipRepository;
-import com.ship.ship_app.gdynia.model.ShipGdynia;
-import com.ship.ship_app.gdynia.service.ShipRepositoryGdynia;
+import com.ship.ship_app.model.Ship;
+import com.ship.ship_app.service.ShipRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.Query;
 import java.util.Comparator;
 import java.util.List;
-import java.util.logging.Filter;
-import java.util.logging.LogRecord;
 import java.util.stream.Collectors;
 
 
@@ -21,40 +16,47 @@ import java.util.stream.Collectors;
 public class ShipsController {
 
     ShipRepository shipRepository;
-    ShipRepositoryGdynia shipRepositoryGdynia;
+    //ShipRepositoryGdynia shipRepositoryGdynia;
 
-    public ShipsController(ShipRepository shipRepository, ShipRepositoryGdynia shipRepositoryGdynia) {
+    public ShipsController(ShipRepository shipRepository) {
         this.shipRepository = shipRepository;
-        this.shipRepositoryGdynia = shipRepositoryGdynia;
-    }
-
-    @GetMapping("/allShipsGdansk")
-    @ResponseBody
-    public List<ShipGdansk> viewUnipilGdansk() {
-         return shipRepository.findAll();
 
     }
 
-    @GetMapping("/allShipsGdynia")
-    @ResponseBody
-    public List<ShipGdynia> viewUnipilGdynia() {
-        return  shipRepositoryGdynia.findAll();
-    }
+//    @GetMapping("/allShipsGdansk")
+//    @ResponseBody
+//    public List<Ship> viewUnipilGdansk() {
+//        List<Ship> allGdansk = shipRepository.findAll();
+//
+//        System.out.println("tu");
+//         return allGdansk;
+//
+//    }
 
-    @GetMapping("/allShipsGdyniaByArrivalPlace")
-    @ResponseBody
-    public List<ShipGdynia> shipsGdyniaSortedByBerth (){
-        List<ShipGdynia> allGdynia = shipRepositoryGdynia.findAll();
-        return allGdynia.stream().sorted(Comparator.comparing(ShipGdynia::getArrivalPlace)).collect(Collectors.toList());
-    }
-
-    @GetMapping("/allShipsGdanskByArrivalPlace")
-    @ResponseBody
-    public List<ShipGdansk> shipGdansksSortedByBerth (){
-        return shipRepository.findAll().stream().sorted(Comparator.comparing(ShipGdansk::getArrivalPlace)).collect(Collectors.toList());
-
-    }
-
+//    @GetMapping("/allShipsGdynia")
+//    @ResponseBody
+//    public List<ShipGdynia> viewUnipilGdynia() {
+//
+//        return  shipRepositoryGdynia.findAll();
+//    }
+//
+//    @GetMapping("/allShipsGdyniaByArrivalPlace")
+//    @ResponseBody
+//    public List<ShipGdynia> shipsGdyniaSortedByBerth (){
+//        List<ShipGdynia> allGdynia = shipRepositoryGdynia.findAll();
+//        return allGdynia;
+//        //allGdynia.stream().sorted(Comparator.comparing(ShipGdynia::getArrivalPlace)).collect(Collectors.toList());
+//    }
+//
+//    @GetMapping("/allShipsGdanskByArrivalPlace")
+//    @ResponseBody
+//    public List<Ship> shipGdansksSortedByBerth (){
+//        List<Ship> allGdansk = shipRepository.findAll();
+//
+//        List<Ship> collect = allGdansk.stream().sorted(Comparator.comparing(Ship::getArrivalPlace)).collect(Collectors.toList());
+//        return collect;
+//    }
+//
 
 }
 

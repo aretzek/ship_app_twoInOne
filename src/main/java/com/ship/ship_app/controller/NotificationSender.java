@@ -1,7 +1,6 @@
 package com.ship.ship_app.controller;
 
 
-
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,11 @@ import java.net.URL;
 
 @Service
 public class NotificationSender {
+    String additionalMessage;
 
+    public void setAdditionalMessage(String additionalMessage) {
+        this.additionalMessage = additionalMessage;
+    }
 
     private final static String AUTH_KEY_FCM = "AAAAKPLurzU:APA91bFvB1roZ78gm1jPAfnKVLs7VPTluBSD46PDgHSQcL3p63w5ppGkuXkevIYlZRtcsnfX1FfQukY_qGHpdxlIia9AZlO1pb1MYxrTHT6ihnldp055Fmf85FNgO_bW3bTDZsqtAuxj";
     private final static String API_URL_FCM = "https://fcm.googleapis.com/fcm/send";
@@ -37,7 +40,13 @@ public class NotificationSender {
         data.put("to", DeviceIdKey.trim());
         JSONObject info = new JSONObject();
         info.put("title", "Ship_App Powiadomienie"); // Notification title
-        info.put("body",shipId+" "+shipDate+"\n"+shipTime+shipInfo);
+        if (additionalMessage.isEmpty()) {
+            info.put("body", shipId + " " + shipDate + "\n" + shipTime + shipInfo);
+        }
+
+        if (!additionalMessage.isEmpty()) {
+            info.put("body", shipId +" "+ additionalMessage);
+        }
         data.put("notification", info);
 
         OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());

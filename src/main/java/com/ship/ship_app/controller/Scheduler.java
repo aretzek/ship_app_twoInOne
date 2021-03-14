@@ -1,7 +1,7 @@
 package com.ship.ship_app.controller;
 
-import com.ship.ship_app.gdansk.service.ShipManager;
-import com.ship.ship_app.gdynia.service.ShipManagerGdynia;
+import com.ship.ship_app.service.ShipManager;
+//import com.ship.ship_app.gdynia.service.ShipManagerGdynia;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +15,16 @@ import java.util.Date;
 @Component
 public class  Scheduler {
     private ShipManager shipManager;
-    private ShipManagerGdynia shipManagerGdynia;
+   // private ShipManagerGdynia shipManagerGdynia;
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     private SelfPinger selfPinger;
 
 
 
     @Autowired
-    public Scheduler(ShipManager shipManager, ShipManagerGdynia shipManagerGdynia, SelfPinger selfPinger) {
+    public Scheduler(ShipManager shipManager,  SelfPinger selfPinger) {
         this.shipManager = shipManager;
-        this.shipManagerGdynia = shipManagerGdynia;
+
         this.selfPinger = selfPinger;
     }
     @Scheduled(fixedRate = 600000L)
@@ -40,12 +40,12 @@ public class  Scheduler {
 
 
     //@Scheduled(cron = "0 * * ? * *")
-    @Scheduled(fixedRate = 60000L)
+    @Scheduled(fixedRate = 180000L)
 
     public void test() {
 
         try {
-            if (shipManager.getLastUpdatedShipGdanskList().isEmpty()) {
+            if (shipManager.getLastUpdatedShipList().isEmpty()) {
                 shipManager.setInitialList();
             }
             shipManager.updateAllChanges();
@@ -58,22 +58,22 @@ public class  Scheduler {
         }
 
     }
-    @Scheduled(fixedRate = 60000L)
+ //   @Scheduled(fixedRate = 60000L)
 
-    public void test3() {
-
-        try {
-
-            if (shipManagerGdynia.getLastUpdatedShipGdyniaList().isEmpty()) {
-                shipManagerGdynia.setInitialList();
-            }
-            shipManagerGdynia.updateAllChanges();
-
-            System.out.println("==========================");
-            Date date = new Date(System.currentTimeMillis());
-            System.out.println(formatter.format(date));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void test3() {
+//
+//        try {
+//
+//            if (shipManagerGdynia.getLastUpdatedShipGdyniaList().isEmpty()) {
+//                shipManagerGdynia.setInitialList();
+//            }
+//            shipManagerGdynia.updateAllChanges();
+//
+//            System.out.println("==========================");
+//            Date date = new Date(System.currentTimeMillis());
+//            System.out.println(formatter.format(date));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

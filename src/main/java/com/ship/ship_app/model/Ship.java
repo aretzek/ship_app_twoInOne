@@ -1,15 +1,16 @@
-package com.ship.ship_app.gdansk.model;
+package com.ship.ship_app.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.fabiomaffioletti.firebase.document.FirebaseDocument;
 import com.github.fabiomaffioletti.firebase.document.FirebaseId;
+import com.google.api.client.util.DateTime;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 
-@FirebaseDocument("/Gdansk")
-public class ShipGdansk {
+@FirebaseDocument("/Ports")
+public class Ship {
     @FirebaseId
     @JsonProperty
     private String id;
@@ -17,17 +18,21 @@ public class ShipGdansk {
     private String date;
     private String time;
     private String info;
+    private DateTime dateTime;
 
+
+    private String port;
     private String departurePlace;
     private String arrivalPlace;
-    private Map<String, String> tokens =new HashMap<>();
+    private List<String> tokens = new ArrayList<>();
+    private List<String> emails = new ArrayList<>();
 
-    public ShipGdansk() {
+    public Ship() {
 
     }
 
 
-    public ShipGdansk(String id, String name, String date, String time, String info, String departurePlace, String arrivalPlace) {
+    public Ship(String id, String name, String date, String time, String info, String departurePlace, String arrivalPlace) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -38,11 +43,35 @@ public class ShipGdansk {
         this.id = id;
     }
 
-    public Map<String, String> getTokens() {
+    public DateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(DateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+    public List<String> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(List<String> emails) {
+        this.emails = emails;
+    }
+
+    public List<String> getTokens() {
         return tokens;
     }
 
-    public void setTokens(Map<String, String> tokens) {
+    public void setTokens(List<String> tokens) {
         this.tokens = tokens;
     }
 
@@ -110,9 +139,9 @@ public class ShipGdansk {
         if (this == object) {
             return true;
         }
-        if (object instanceof ShipGdansk) {
-            ShipGdansk shipGdanskDetails = (ShipGdansk) object;
-            if (name.equals(shipGdanskDetails.name) && info.equals(shipGdanskDetails.info) && time.equals(shipGdanskDetails.time) && date.equals(shipGdanskDetails.date)&& arrivalPlace.equals(shipGdanskDetails.arrivalPlace)) {
+        if (object instanceof Ship) {
+            Ship shipGdanskDetails = (Ship) object;
+            if (name.equals(shipGdanskDetails.name) && info.equals(shipGdanskDetails.info) && time.equals(shipGdanskDetails.time) && date.equals(shipGdanskDetails.date) && arrivalPlace.equals(shipGdanskDetails.arrivalPlace)) {
                 return true;
             }
         }
@@ -120,7 +149,8 @@ public class ShipGdansk {
 
 
     }
-    public void changingSingnsInShipsNames (ShipGdansk shipGdansk) {
+
+    public void changingSignsInShipsNames(Ship shipGdansk) {
         shipGdansk.setName(shipGdansk.getName().replace('/', ' '));
         shipGdansk.setName(shipGdansk.getName().replace('.', ' '));
         shipGdansk.setName(shipGdansk.getName().replace('-', ' '));
@@ -134,7 +164,7 @@ public class ShipGdansk {
     }
 
 
-    public void changingSingnsInArrivalPlace (ShipGdansk shipGdansk) {
+    public void changingSingnsInArrivalPlace(Ship shipGdansk) {
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('/', ' '));
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('.', ' '));
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('-', ' '));
@@ -146,7 +176,6 @@ public class ShipGdansk {
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('Ę', 'E'));
         shipGdansk.setArrivalPlace(shipGdansk.getArrivalPlace().replace('&', ' '));
     }
-
 
 
 }
