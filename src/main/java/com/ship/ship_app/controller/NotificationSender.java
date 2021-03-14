@@ -21,7 +21,7 @@ public class NotificationSender {
     private final static String AUTH_KEY_FCM = "AAAAKPLurzU:APA91bFvB1roZ78gm1jPAfnKVLs7VPTluBSD46PDgHSQcL3p63w5ppGkuXkevIYlZRtcsnfX1FfQukY_qGHpdxlIia9AZlO1pb1MYxrTHT6ihnldp055Fmf85FNgO_bW3bTDZsqtAuxj";
     private final static String API_URL_FCM = "https://fcm.googleapis.com/fcm/send";
 
-    public void pushFCMNotification(String DeviceIdKey, String shipId, String shipDate, String shipInfo, String shipTime) throws Exception {
+    public void pushFCMNotification(String DeviceIdKey, String message) throws Exception {
 
         String authKey = AUTH_KEY_FCM;
         String FMCurl = API_URL_FCM;
@@ -40,13 +40,8 @@ public class NotificationSender {
         data.put("to", DeviceIdKey.trim());
         JSONObject info = new JSONObject();
         info.put("title", "Ship_App Powiadomienie"); // Notification title
-        if (additionalMessage.isEmpty()) {
-            info.put("body", shipId + " " + shipDate + "\n" + shipTime + shipInfo);
-        }
+        info.put("body", message);
 
-        if (!additionalMessage.isEmpty()) {
-            info.put("body", shipId +" "+ additionalMessage);
-        }
         data.put("notification", info);
 
         OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
