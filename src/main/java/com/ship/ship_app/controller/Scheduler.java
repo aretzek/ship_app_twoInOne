@@ -24,7 +24,6 @@ public class  Scheduler {
     @Autowired
     public Scheduler(ShipManager shipManager,  SelfPinger selfPinger) {
         this.shipManager = shipManager;
-
         this.selfPinger = selfPinger;
     }
     @Scheduled(fixedRate = 600000L)

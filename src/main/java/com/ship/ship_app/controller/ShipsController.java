@@ -23,22 +23,21 @@ public class ShipsController {
 
     }
 
-//    @GetMapping("/allShipsGdansk")
-//    @ResponseBody
-//    public List<Ship> viewUnipilGdansk() {
-//        List<Ship> allGdansk = shipRepository.findAll();
-//
-//        System.out.println("tu");
-//         return allGdansk;
-//
-//    }
+    @GetMapping("/allShipsGdansk")
+    @ResponseBody
+    public List<Ship> viewUnipilGdansk() {
+        List<Ship> allGdansk = shipRepository.findAll();
+        allGdansk.stream().filter(str -> str.getPort().contains("Gdansk")).collect(Collectors.toList());
+        return allGdansk;
 
-//    @GetMapping("/allShipsGdynia")
-//    @ResponseBody
-//    public List<ShipGdynia> viewUnipilGdynia() {
-//
-//        return  shipRepositoryGdynia.findAll();
-//    }
+    }
+
+    @GetMapping("/allShipsGdynia")
+    @ResponseBody
+    public List<Ship> viewUnipilGdynia() {
+
+        return  shipRepository.findAll().stream().filter(str -> str.getPort().contains("Gdynia")).collect(Collectors.toList());
+    }
 //
 //    @GetMapping("/allShipsGdyniaByArrivalPlace")
 //    @ResponseBody
