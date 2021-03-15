@@ -134,6 +134,10 @@ public class Ship {
     public void addToken(String token){
         tokens.add(token);
     }
+
+    public void removeToken(String token){
+        tokens.remove(token);
+    }
     @Override
     public boolean equals(Object object) {
         if (object == null) {
