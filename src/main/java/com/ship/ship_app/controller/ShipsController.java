@@ -41,6 +41,18 @@ public class ShipsController {
  //       SendEmail.send(Emails, "Twój obserwowany statek", "Coś się zmieniło ! Twój obserwowany statek ma zmienione informacje, zobacz w aplikacji Ship app pilot");
         return  shipManager.getLastUpdatedShipList().stream().filter(str -> str.getPort().contains("Gdynia")).collect(Collectors.toList());
     }
+
+    @GetMapping("/allShipsSzczecin")
+    @ResponseBody
+    public List<Ship> viewUnipilSzczecin() {
+        return shipManager.getLastUpdatedShipList().stream().filter(str -> str.getPort().contains("Szczecin")).collect(Collectors.toList());
+    }
+
+    @GetMapping("/allShipsSwinoujscie")
+    @ResponseBody
+    public List<Ship> viewUnipilSwinoujscie() {
+        return shipManager.getLastUpdatedShipList().stream().filter(str -> str.getPort().contains("Swinoujscie")).collect(Collectors.toList());
+    }
 //
 //    @GetMapping("/allShipsGdyniaByArrivalPlace")
 //    @ResponseBody
