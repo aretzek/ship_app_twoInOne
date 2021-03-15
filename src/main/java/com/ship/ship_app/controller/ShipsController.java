@@ -4,8 +4,10 @@ package com.ship.ship_app.controller;
 import com.ship.ship_app.model.Ship;
 import com.ship.ship_app.service.ShipManager;
 import com.ship.ship_app.service.ShipRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -53,6 +55,14 @@ public class ShipsController {
     public List<Ship> viewUnipilSwinoujscie() {
         return shipManager.getLastUpdatedShipList().stream().filter(str -> str.getPort().contains("Swinoujscie")).collect(Collectors.toList());
     }
+    @PostMapping("/{shipId}/{token}")
+
+    public void addToken( @PathVariable String shipId, @PathVariable String token){
+        shipManager.insertTokenToFirebase(shipId,token);
+    }
+
+
+    }
 //
 //    @GetMapping("/allShipsGdyniaByArrivalPlace")
 //    @ResponseBody
@@ -72,5 +82,5 @@ public class ShipsController {
 //    }
 //
 
-}
+
 

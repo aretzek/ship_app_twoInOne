@@ -47,6 +47,15 @@ public class ShipManager implements InitializingBean {
         return lastUpdatedShipList;
     }
 
+    public void insertTokenToFirebase(String shipId, String token) {
+
+        Ship ship = shipRepository.get(shipId, Ship.class);
+        ship.addToken(token);
+        shipRepository.update(ship);
+
+
+    }
+
     private List<String> getTokensFromFirebase(String id) {
         List<String> tokensList = new ArrayList<>();
         try {
@@ -102,7 +111,7 @@ public class ShipManager implements InitializingBean {
     }
 
     private ChangesInShips findDifferencesBetweenLastUpdatedListAndActualList() throws Exception {
-        List<Ship> actualShipList =new ArrayList<>();
+        List<Ship> actualShipList = new ArrayList<>();
 
         actualShipList.addAll(decoderGdynia.getShipsList());
         actualShipList.addAll(decoderGdansk.getShipList());
@@ -133,9 +142,12 @@ public class ShipManager implements InitializingBean {
         return changesInShips;
     }
 
+
     static private class ChangesInShips {
         Set<Ship> listOfNewShip = new HashSet<>();
         Set<Ship> listOfOutdatedShip = new HashSet<>();
         //  Set<Ship> listOfUnchangedShip = new HashSet<>();
     }
+
+
 }

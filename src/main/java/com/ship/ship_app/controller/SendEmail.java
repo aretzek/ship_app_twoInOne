@@ -4,6 +4,7 @@ import javax.activation.DataHandler;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.swing.*;
+import javax.validation.constraints.Email;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 

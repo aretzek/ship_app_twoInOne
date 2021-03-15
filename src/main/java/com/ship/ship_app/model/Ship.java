@@ -131,6 +131,9 @@ public class Ship {
        return id;
     }
 
+    public void addToken(String token){
+        tokens.add(token);
+    }
     @Override
     public boolean equals(Object object) {
         if (object == null) {
