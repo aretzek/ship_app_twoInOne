@@ -1,4 +1,4 @@
-package com.ship.ship_app.service;
+package com.ship.ship_app.service.PageObservers;
 
 
 import com.ship.ship_app.model.Ship;
@@ -16,14 +16,12 @@ import java.util.List;
 public class DecoderGdynia {
 
 
-
-
     public List<Ship> getShipsList() throws IOException {
 
         List<Ship> shipsList = new ArrayList<Ship>();
         String[] tempTable;
-       Document doc = Jsoup.connect("https://www.unipil.pl/?a=ruch").get();
-       //Document doc = Jsoup.connect("http://localhost:8080/").get();//
+        Document doc = Jsoup.connect("https://www.unipil.pl/?a=ruch").get();
+        //Document doc = Jsoup.connect("http://localhost:8080/").get();//
 
 
         Element table = doc.select("table").get(0); //select the first table.
@@ -33,20 +31,20 @@ public class DecoderGdynia {
                 .replace("</td>", "").replace("<tr>", "").replace("</tr>", "").replace("\n", "");
         tempTable = stream.split(";");
         Ship shipGdynia = null;
-        for (int i = 1; i < tempTable.length -1; i = i + 7) {
-            shipGdynia =new Ship();
+        for (int i = 1; i < tempTable.length - 1; i = i + 7) {
+            shipGdynia = new Ship();
 
             shipGdynia.setDate(tempTable[i]);
-            shipGdynia.setTime(" "+tempTable[i + 2]);
+            shipGdynia.setTime(" " + tempTable[i + 2]);
             shipGdynia.setInfo(tempTable[i + 1]);
             shipGdynia.setName(tempTable[i + 3]);
-            //shipGdynia.changingSingnsInShipsNames(shipGdynia);
             shipGdynia.setDeparturePlace(tempTable[i + 5]);
             shipGdynia.setArrivalPlace(tempTable[i + 6]);
+            shipGdynia.changingSignsInShipsNames(shipGdynia);
             shipGdynia.changingSingnsInArrivalPlace(shipGdynia);
-            shipGdynia.setId(shipGdynia.getName()+ shipGdynia.getArrivalPlace());
+            shipGdynia.setId(shipGdynia.getName() + shipGdynia.getArrivalPlace());
             shipGdynia.setPort("Gdynia");
-           // System.out.println(ship.getName());
+
 
             shipsList.add(shipGdynia);
         }
