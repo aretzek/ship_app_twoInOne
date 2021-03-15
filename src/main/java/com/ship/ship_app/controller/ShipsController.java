@@ -2,10 +2,13 @@ package com.ship.ship_app.controller;
 
 
 import com.ship.ship_app.model.Ship;
+import com.ship.ship_app.service.ShipManager;
 import com.ship.ship_app.service.ShipRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,27 +19,27 @@ import java.util.stream.Collectors;
 public class ShipsController {
 
     ShipRepository shipRepository;
+    ShipManager shipManager;
     //ShipRepositoryGdynia shipRepositoryGdynia;
 
-    public ShipsController(ShipRepository shipRepository) {
+    public ShipsController(ShipRepository shipRepository, ShipManager shipManager) {
         this.shipRepository = shipRepository;
+        this.shipManager = shipManager;
 
     }
 
     @GetMapping("/allShipsGdansk")
     @ResponseBody
     public List<Ship> viewUnipilGdansk() {
-        List<Ship> allGdansk = shipRepository.findAll();
-        allGdansk.stream().filter(str -> str.getPort().contains("Gdansk")).collect(Collectors.toList());
-        return allGdansk;
-
+        return shipManager.getLastUpdatedShipList().stream().filter(str -> str.getPort().contains("Gdansk")).collect(Collectors.toList());
     }
 
     @GetMapping("/allShipsGdynia")
     @ResponseBody
-    public List<Ship> viewUnipilGdynia() {
-
-        return  shipRepository.findAll().stream().filter(str -> str.getPort().contains("Gdynia")).collect(Collectors.toList());
+    public List<Ship> viewUnipilGdynia() throws AddressException {
+ //       InternetAddress[] Emails = InternetAddress.parse("shipsdevteam@gmail.com");
+ //       SendEmail.send(Emails, "Twój obserwowany statek", "Coś się zmieniło ! Twój obserwowany statek ma zmienione informacje, zobacz w aplikacji Ship app pilot");
+        return  shipManager.getLastUpdatedShipList().stream().filter(str -> str.getPort().contains("Gdynia")).collect(Collectors.toList());
     }
 //
 //    @GetMapping("/allShipsGdyniaByArrivalPlace")
