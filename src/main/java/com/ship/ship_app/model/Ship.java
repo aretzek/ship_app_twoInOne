@@ -11,8 +11,9 @@ import java.util.List;
 
 @FirebaseDocument("/Ports")
 public class Ship {
-    @FirebaseId
+
     @JsonProperty
+    @FirebaseId
    private String id;
     private String name;
     private String date;

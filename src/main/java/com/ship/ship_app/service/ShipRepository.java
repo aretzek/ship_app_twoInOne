@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public class ShipRepository extends DefaultFirebaseRealtimeDatabaseRepository<Ship, String> {
+//public List<Ship> getAllShips (){}
+
 
 }
 

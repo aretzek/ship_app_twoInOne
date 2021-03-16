@@ -7,6 +7,8 @@ import com.ship.ship_app.service.ShipRepository;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponents;
+
 import javax.mail.internet.AddressException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,7 +55,7 @@ public class ShipsController {
     }
     @PostMapping("/insertToken/{shipId}/{token}")
 
-    public void addToken( @PathVariable String shipId, @PathVariable String token){
+    public void insertToken( @PathVariable String shipId, @PathVariable String token){
         shipManager.insertTokenToFirebase(shipId,token);
     }
     @PostMapping("/removeToken/{shipId}/{token}")
