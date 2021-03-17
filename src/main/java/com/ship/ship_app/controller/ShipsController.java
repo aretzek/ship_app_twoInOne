@@ -56,9 +56,9 @@ public class ShipsController {
     public void addToken( @PathVariable String shipId, @PathVariable String token){
         shipManager.insertTokenToFirebase(shipId,token);
     }
-    @PostMapping("/removeToken/{shipId}/{token}")
+    @PostMapping("/removeToken)
 
-    public void removeToken( @PathVariable String shipId, @PathVariable String token){
+    public void removeToken( @RequestBody Ship ship){
         shipManager.removeTokenFromFirebase(shipId,token);
     }
 
