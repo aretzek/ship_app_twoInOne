@@ -47,10 +47,10 @@ public class ShipManager implements InitializingBean {
         return lastUpdatedShipList;
     }
 
-    public void insertTokenToFirebase(String shipId, String token) {
-        Ship ship = shipRepository.get(shipId, Ship.class);
-        ship.addToken(token);
-        shipRepository.update(ship);
+    public void insertTokenToFirebase(Ship ship) {
+        Ship shipaddToken = shipRepository.get(shipRepository, Ship.class);
+      //  ship.addToken(token);
+        shipRepository.update(shipaddToken);
     }
 
     public void removeTokenFromFirebase(String shipId, String token) {

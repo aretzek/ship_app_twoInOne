@@ -10,6 +10,9 @@ import java.util.List;
 @Repository
 public class ShipRepository extends DefaultFirebaseRealtimeDatabaseRepository<Ship, String> {
 
+    public Ship get(ShipRepository shipRepository, Class<Ship> shipClass) {
+        return null;
+    }
 }
 
 

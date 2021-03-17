@@ -51,10 +51,10 @@ public class ShipsController {
     public List<Ship> viewUnipilSwinoujscie() {
         return shipManager.getLastUpdatedShipList().stream().filter(str -> str.getPort().contains("Swinoujscie")).collect(Collectors.toList());
     }
-    @PostMapping("/insertToken/{shipId}/{token}")
+    @PostMapping("/insertToken")
 
-    public void addToken( @PathVariable String shipId, @PathVariable String token){
-        shipManager.insertTokenToFirebase(shipId,token);
+    public void addToken( @RequestBody Ship ship){
+        shipManager.insertTokenToFirebase(ship);
     }
     @PostMapping("/removeToken/{shipId}/{token}")
 
