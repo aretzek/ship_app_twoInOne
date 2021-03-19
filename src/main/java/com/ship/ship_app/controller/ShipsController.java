@@ -3,11 +3,10 @@ package com.ship.ship_app.controller;
 
 import com.ship.ship_app.model.Ship;
 import com.ship.ship_app.service.ShipManager;
-import com.ship.ship_app.service.ShipRepository;
+import com.ship.ship_app.service.repository.ShipRepository;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponents;
 
 import javax.mail.internet.AddressException;
 import java.util.List;
@@ -63,6 +62,7 @@ public class ShipsController {
     public void removeToken( @PathVariable String shipId, @PathVariable String token){
         shipManager.removeTokenFromFirebase(shipId,token);
     }
+
 
 
     }

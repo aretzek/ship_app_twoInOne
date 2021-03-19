@@ -1,5 +1,6 @@
 package com.ship.ship_app.controller;
 
+import com.ship.ship_app.service.PortManager;
 import com.ship.ship_app.service.ShipManager;
 //import com.ship.ship_app.gdynia.service.ShipManagerGdynia;
 import org.jsoup.Jsoup;
@@ -18,13 +19,14 @@ public class  Scheduler {
    // private ShipManagerGdynia shipManagerGdynia;
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     private SelfPinger selfPinger;
-
+    private PortManager portManager;
 
 
     @Autowired
-    public Scheduler(ShipManager shipManager,  SelfPinger selfPinger) {
+    public Scheduler(PortManager portManager,ShipManager shipManager, SelfPinger selfPinger) {
         this.shipManager = shipManager;
         this.selfPinger = selfPinger;
+        this.portManager =portManager;
     }
     @Scheduled(fixedRate = 600000L)
     public void test2(){
@@ -44,10 +46,14 @@ public class  Scheduler {
     public void test() {
 
         try {
-            if (shipManager.getLastUpdatedShipList().isEmpty()) {
-                shipManager.setInitialList();
-            }
-            shipManager.updateAllChanges();
+            portManager.updatePort("Gdynia");
+            portManager.updatePort("Gdansk");
+            portManager.updatePort("Szczecin");
+            portManager.updatePort("Swinoujscie");
+//            if (shipManager.getLastUpdatedShipList().isEmpty()) {
+//                shipManager.setInitialList();
+//            }
+//            shipManager.updateAllChanges();
 
             System.out.println("==========================");
             Date date = new Date(System.currentTimeMillis());

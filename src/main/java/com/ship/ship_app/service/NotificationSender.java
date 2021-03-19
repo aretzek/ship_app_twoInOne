@@ -1,4 +1,4 @@
-package com.ship.ship_app.controller;
+package com.ship.ship_app.service;
 
 
 import org.json.JSONObject;

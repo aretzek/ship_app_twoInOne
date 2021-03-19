@@ -1,12 +1,12 @@
 package com.ship.ship_app.service;
 
 import com.github.fabiomaffioletti.firebase.exception.FirebaseRepositoryException;
-import com.ship.ship_app.controller.NotificationSender;
 import com.ship.ship_app.model.Ship;
 import com.ship.ship_app.service.PageObservers.DecoderGdansk;
 import com.ship.ship_app.service.PageObservers.DecoderGdynia;
 import com.ship.ship_app.service.PageObservers.DecoderSwinoujscie;
 import com.ship.ship_app.service.PageObservers.DecoderSzczecin;
+import com.ship.ship_app.service.repository.ShipRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +27,14 @@ public class ShipManager implements InitializingBean {
     private NotificationSender notificationSender;
     private List<Ship> lastUpdatedShipList = new ArrayList<>();
 
-
     @Autowired
+    public ShipManager(String portName) {
+        this.portName = portName;
+    }
+
+    private String portName;
+
+
     public ShipManager(ShipRepository shipRepository, DecoderGdansk decoderGdansk, DecoderGdynia decoderGdynia,
                        DecoderSwinoujscie decoderSwinoujscie, DecoderSzczecin decoderSzczecin, NotificationSender notificationSender) {
         this.shipRepository = shipRepository;
@@ -116,10 +122,21 @@ public class ShipManager implements InitializingBean {
     private ChangesInShips findDifferencesBetweenLastUpdatedListAndActualList() throws Exception {
         List<Ship> actualShipList = new ArrayList<>();
 
-        actualShipList.addAll(decoderGdynia.getShipsList());
-        actualShipList.addAll(decoderGdansk.getShipList());
-        actualShipList.addAll(decoderSwinoujscie.getShipsList());
-        actualShipList.addAll(decoderSzczecin.getShipsList());
+        switch (portName) {
+            case "Gdynia":
+                actualShipList.addAll(decoderGdynia.getShipsList());
+                break;
+            case "Gdansk":
+                actualShipList.addAll(decoderGdansk.getShipList());
+                break;
+            case "Swinoujscie":
+                actualShipList.addAll(decoderSwinoujscie.getShipsList());
+                break;
+            case "Szczecin":
+                actualShipList.addAll(decoderSzczecin.getShipsList());
+                break;
+        }
+
         ChangesInShips changesInShips = new ChangesInShips();
 
         for (Ship ship : actualShipList) {

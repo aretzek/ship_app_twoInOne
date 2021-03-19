@@ -1,4 +1,4 @@
-package com.ship.ship_app.service;
+package com.ship.ship_app.service.repository;
 
 import com.github.fabiomaffioletti.firebase.repository.DefaultFirebaseRealtimeDatabaseRepository;
 import com.ship.ship_app.model.Ship;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class ShipRepository extends DefaultFirebaseRealtimeDatabaseRepository<Ship, String> {
-//public List<Ship> getAllShips (){}
+
 
 
 }

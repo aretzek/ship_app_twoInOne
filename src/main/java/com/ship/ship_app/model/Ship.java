@@ -7,12 +7,13 @@ import com.google.api.client.util.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
-@FirebaseDocument("/Ports")
+
 public class Ship {
 
-    @JsonProperty
+
     @FirebaseId
    private String id;
     private String name;
@@ -25,6 +26,16 @@ public class Ship {
     private String port;
     private String departurePlace;
     private String arrivalPlace;
+
+    public Set<String> getUsersId() {
+        return usersId;
+    }
+
+    public void setUsersId(Set<String> usersId) {
+        this.usersId = usersId;
+    }
+
+    private Set<String> usersId;
     private List<String> tokens = new ArrayList<>();
     private List<String> emails = new ArrayList<>();
 

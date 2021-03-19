@@ -19,15 +19,13 @@ public class User {
     private Set<String> favoriteShipList;
     private Date lastActivity;
     private String myToken;
+    private Set<String> favoritePorts;
 
-
-    public User(String login, String password, String email, String myToken, Set<String> favoriteShipList, Date lastActivity) {
+    public User(String login, String password, String email) {
         this.login = login;
         this.password = password;
         this.email = email;
-        this.myToken=myToken;
-        this.favoriteShipList = favoriteShipList;
-        this.lastActivity =lastActivity;
+
     }
 
     public String getLogin() {
