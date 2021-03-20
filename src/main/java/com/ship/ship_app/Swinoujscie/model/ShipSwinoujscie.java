@@ -1,15 +1,16 @@
-package com.ship.ship_app.gdynia.model;
+package com.ship.ship_app.Swinoujscie.model;
+
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.fabiomaffioletti.firebase.document.FirebaseDocument;
 import com.github.fabiomaffioletti.firebase.document.FirebaseId;
-import com.ship.ship_app.gdansk.model.ShipGdansk;
+import com.ship.ship_app.gdynia.model.ShipGdynia;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@FirebaseDocument("/Gdynia")
-public class ShipGdynia {
+@FirebaseDocument("Swinoujscie")
+public class ShipSwinoujscie {
     @FirebaseId
     @JsonProperty
     private String id;
@@ -22,13 +23,7 @@ public class ShipGdynia {
     private String arrivalPlace;
     private Map<String, String> tokens =new HashMap<>();
 
-    public ShipGdynia() {
-    }
-
-    public ShipGdynia(String id,
-                      String name,
-                      String date,
-                      String time, String info, String departurePlace, String arrivalPlace) {
+    public ShipSwinoujscie(String id, String name, String date, String time, String info, String departurePlace, String arrivalPlace) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -36,6 +31,9 @@ public class ShipGdynia {
         this.info = info;
         this.departurePlace = departurePlace;
         this.arrivalPlace = arrivalPlace;
+    }
+
+    public ShipSwinoujscie() {
     }
 
     public String getId() {
@@ -110,16 +108,16 @@ public class ShipGdynia {
         if (this == object) {
             return true;
         }
-        if (object instanceof ShipGdynia) {
-            ShipGdynia shipGdyniaDetails = (ShipGdynia) object;
-            if (name.equals(shipGdyniaDetails.name) && info.equals(shipGdyniaDetails.info) && time.equals(shipGdyniaDetails.time) && date.equals(shipGdyniaDetails.date)&& arrivalPlace.equals(shipGdyniaDetails.arrivalPlace)) {
+        if (object instanceof ShipSwinoujscie) {
+            ShipSwinoujscie shipSwinoujscieDetails = (ShipSwinoujscie) object;
+            if (name.equals(shipSwinoujscieDetails.name) && info.equals(shipSwinoujscieDetails.info) && time.equals(shipSwinoujscieDetails.time) && date.equals(shipSwinoujscieDetails.date)&& arrivalPlace.equals(shipSwinoujscieDetails.arrivalPlace)) {
                 return true;
             }
         }
         return false;
 
     }
-    public void changingSingnsInShipsNames (ShipGdynia shipGdynia) {
+    public void changingSingnsInShipsNames (ShipSwinoujscie shipGdynia) {
         shipGdynia.setName(shipGdynia.getName().replace('/', ' '));
         shipGdynia.setName(shipGdynia.getName().replace('.', ' '));
         shipGdynia.setName(shipGdynia.getName().replace('-', ' '));
@@ -131,7 +129,7 @@ public class ShipGdynia {
         shipGdynia.setName(shipGdynia.getName().replace('Ę', 'E'));
         shipGdynia.setName(shipGdynia.getName().replace('&', ' '));
     }
-    public void changingSingnsInArrivalPlace (ShipGdynia shipGdynia) {
+    public void changingSingnsInArrivalPlace (ShipSwinoujscie shipGdynia) {
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('/', ' '));
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('.', ' '));
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('-', ' '));

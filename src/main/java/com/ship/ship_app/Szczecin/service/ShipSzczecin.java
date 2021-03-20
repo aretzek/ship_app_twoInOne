@@ -1,15 +1,15 @@
-package com.ship.ship_app.gdynia.model;
+package com.ship.ship_app.Szczecin.service;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.fabiomaffioletti.firebase.document.FirebaseDocument;
 import com.github.fabiomaffioletti.firebase.document.FirebaseId;
-import com.ship.ship_app.gdansk.model.ShipGdansk;
+import com.ship.ship_app.Swinoujscie.model.ShipSwinoujscie;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@FirebaseDocument("/Gdynia")
-public class ShipGdynia {
+@FirebaseDocument("Szczecin")
+public class ShipSzczecin {
     @FirebaseId
     @JsonProperty
     private String id;
@@ -22,13 +22,10 @@ public class ShipGdynia {
     private String arrivalPlace;
     private Map<String, String> tokens =new HashMap<>();
 
-    public ShipGdynia() {
+    public ShipSzczecin() {
     }
 
-    public ShipGdynia(String id,
-                      String name,
-                      String date,
-                      String time, String info, String departurePlace, String arrivalPlace) {
+    public ShipSzczecin(String id, String name, String date, String time, String info, String departurePlace, String arrivalPlace) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -101,7 +98,6 @@ public class ShipGdynia {
     public void setTokens(Map<String, String> tokens) {
         this.tokens = tokens;
     }
-
     @Override
     public boolean equals(Object object) {
         if (object == null) {
@@ -110,8 +106,8 @@ public class ShipGdynia {
         if (this == object) {
             return true;
         }
-        if (object instanceof ShipGdynia) {
-            ShipGdynia shipGdyniaDetails = (ShipGdynia) object;
+        if (object instanceof ShipSzczecin) {
+            ShipSzczecin shipGdyniaDetails = (ShipSzczecin) object;
             if (name.equals(shipGdyniaDetails.name) && info.equals(shipGdyniaDetails.info) && time.equals(shipGdyniaDetails.time) && date.equals(shipGdyniaDetails.date)&& arrivalPlace.equals(shipGdyniaDetails.arrivalPlace)) {
                 return true;
             }
@@ -119,7 +115,7 @@ public class ShipGdynia {
         return false;
 
     }
-    public void changingSingnsInShipsNames (ShipGdynia shipGdynia) {
+    public void changingSignsInShipsNames (ShipSzczecin shipGdynia) {
         shipGdynia.setName(shipGdynia.getName().replace('/', ' '));
         shipGdynia.setName(shipGdynia.getName().replace('.', ' '));
         shipGdynia.setName(shipGdynia.getName().replace('-', ' '));
@@ -131,7 +127,7 @@ public class ShipGdynia {
         shipGdynia.setName(shipGdynia.getName().replace('Ę', 'E'));
         shipGdynia.setName(shipGdynia.getName().replace('&', ' '));
     }
-    public void changingSingnsInArrivalPlace (ShipGdynia shipGdynia) {
+    public void changingSingnsInArrivalPlace (ShipSzczecin shipGdynia) {
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('/', ' '));
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('.', ' '));
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('-', ' '));
@@ -143,4 +139,7 @@ public class ShipGdynia {
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('Ę', 'E'));
         shipGdynia.setArrivalPlace(shipGdynia.getArrivalPlace().replace('&', ' '));
     }
+
+
 }
+
