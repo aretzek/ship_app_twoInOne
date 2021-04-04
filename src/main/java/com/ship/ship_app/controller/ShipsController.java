@@ -38,7 +38,7 @@ public class ShipsController {
         this.shipManagerSwinoujscie = shipManagerSwinoujscie;
     }
 
-    @GetMapping("/getAllShipsGdansk")
+    @GetMapping("/allShipsGdansk")
     @ResponseBody
     public List<ShipGdansk> viewUnipilGdansk() {
          return shipManager.getLastUpdatedShipGdanskList();
