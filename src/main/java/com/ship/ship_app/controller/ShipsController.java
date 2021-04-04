@@ -38,27 +38,27 @@ public class ShipsController {
         this.shipManagerSwinoujscie = shipManagerSwinoujscie;
     }
 
-    @GetMapping("/allShipsGdansk")
+    @GetMapping("/Gdansk")
     @ResponseBody
     public List<ShipGdansk> viewUnipilGdansk() {
          return shipManager.getLastUpdatedShipGdanskList();
 
     }
 
-    @GetMapping("/allShipsGdynia")
+    @GetMapping("/Gdynia")
     @ResponseBody
     public List<ShipGdynia> shipsGdynia (){
         return shipManagerGdynia.getLastUpdatedShipGdyniaList();
 
     }
 
-    @GetMapping("/allShipsSzczecin")
+    @GetMapping("/Szczecin")
     @ResponseBody
     public List<ShipSzczecin> viewUnipilSzczecin() {
         return shipManagerSzczecin.getLastUpdatedShipGdyniaList();
     }
 
-    @GetMapping("/allShipsSwinoujscie")
+    @GetMapping("/Swinoujscie")
     @ResponseBody
     public List<ShipSwinoujscie> viewUnipilSwinoujscie() {
         return shipManagerSwinoujscie.getLastUpdatedShipSwinoujscieList();
