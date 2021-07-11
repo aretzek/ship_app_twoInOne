@@ -8,7 +8,7 @@ import com.ship.ship_app.gdansk.model.ShipGdansk;
 import java.util.HashMap;
 import java.util.Map;
 
-@FirebaseDocument("/Gdynia")
+@FirebaseDocument("Gdynia")
 public class ShipGdynia {
     @FirebaseId
     @JsonProperty

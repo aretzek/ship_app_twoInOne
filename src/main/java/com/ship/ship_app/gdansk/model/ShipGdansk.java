@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@FirebaseDocument("/Gdansk")
+@FirebaseDocument("Gdansk")
 public class ShipGdansk {
     @FirebaseId
     @JsonProperty
